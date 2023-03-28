@@ -17,7 +17,7 @@ class AddressTest {
     }
 
     @Test
-    void creatingAnAddressObjectUsingNullValues_shouldThrowAnException() {
+    void creatingAnAddressObjectUsingNullOrEmptyValues_shouldThrowAnException() {
 
         IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class,()->{
             Address address = new Address(null,36,"3000","Leuven");
@@ -25,7 +25,7 @@ class AddressTest {
         Assertions.assertEquals("Incorrect input",exception.getMessage());
     }
     @Test
-    void creatingAnAddressObjectUsingZeroValue_shouldThrowAnException() {
+    void creatingAnAddressObjectUsingLessThanOrEqualToZeroValue_shouldThrowAnException() {
 
         IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class,()->{
             Address address = new Address("OudStraat",0,"3000","Leuven");
