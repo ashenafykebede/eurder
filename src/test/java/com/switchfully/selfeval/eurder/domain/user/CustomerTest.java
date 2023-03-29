@@ -1,10 +1,9 @@
 package com.switchfully.selfeval.eurder.domain.user;
 
+import com.switchfully.selfeval.eurder.domain.user.role.Customer;
 import com.switchfully.selfeval.eurder.domain.user.role.Feature;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class CustomerTest {
     private final Customer ashenafi = new Customer("", "Weldie", "123",
