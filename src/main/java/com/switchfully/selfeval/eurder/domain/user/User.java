@@ -5,12 +5,12 @@ import com.switchfully.selfeval.eurder.domain.user.role.Role;
 
 public abstract class User {
     private final int usedID;
-    private static int idGenerator=0;
     private final String  firstName;
     private final String lastName;
     private final Contact contact;
     private final String password;
     private final Role role;
+    private static int idGenerator=0;
 
 
     public User(String firstName, String lastName, Contact contact, String password, Role role) {
