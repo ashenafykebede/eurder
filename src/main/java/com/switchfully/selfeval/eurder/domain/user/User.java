@@ -26,10 +26,6 @@ public abstract class User {
         return usedID;
     }
 
-    public static int getIdGenerator() {
-        return idGenerator;
-    }
-
     public String getFirstName() {
         return firstName;
     }
@@ -53,7 +49,7 @@ public abstract class User {
         return role.canAccess(feature);
     }
 
-    public boolean doesPasswordMatch(String passwordToBeChecked) {
-        return this.password.equals(passwordToBeChecked);
+    public boolean doesPasswordMatch(String password) {
+        return this.password.equals(password);
     }
 }
