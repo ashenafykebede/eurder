@@ -7,14 +7,41 @@ public class Address {
     private final String city;
 
     public Address(String streetName, int streetNumber, String postalCode, String city) {
-        if (!isValidInput(streetName,streetNumber,postalCode,city)){
+        this.streetName = validateStreetName(streetName);
+        this.streetNumber = validateStreetNumber(streetNumber);
+        this.postalCode = validatePostalCode(postalCode);
+        this.city = validateCity(city);
+    }
+
+
+    private String validateStreetName(String streetName) {
+        if (streetName == null || streetName.isEmpty()) {
             throw new IllegalArgumentException("Incorrect input");
         }
-        this.streetName = streetName;
-        this.streetNumber = streetNumber;
-        this.postalCode = postalCode;
-        this.city = city;
+        return streetName;
     }
+
+    private int validateStreetNumber(int streetNumber) {
+        if (streetNumber <= 0) {
+            throw new IllegalArgumentException("Incorrect input");
+        }
+        return streetNumber;
+
+    }
+    private String validatePostalCode(String postalCode) {
+        if (postalCode == null || postalCode.isEmpty()) {
+            throw new IllegalArgumentException("Incorrect input");
+        }
+        return postalCode;
+    }
+
+    private String validateCity(String city) {
+        if (city == null || city.isEmpty()) {
+            throw new IllegalArgumentException("Incorrect input");
+        }
+        return city;
+    }
+
 
     public String getStreetName() {
         return streetName;
@@ -30,21 +57,5 @@ public class Address {
 
     public String getCity() {
         return null;
-    }
-    private boolean isValidInput(String streetName,int streetNumber,String postalCode,String city){
-        if (streetName == null || streetName.isEmpty()){
-            return false;
-        }
-        if (streetNumber<=0){
-            return false;
-        }
-        if (postalCode==null || postalCode.isEmpty()){
-            return false;
-        }
-        if (city==null || city.isEmpty()){
-            return false;
-        }
-
-        return true;
     }
 }
