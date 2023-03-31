@@ -6,7 +6,7 @@ import com.switchfully.selfeval.eurder.domain.user.User;
 import com.switchfully.selfeval.eurder.domain.user.role.Role;
 
 public class Customer extends User {
-    private Address address;
+    private final Address address;
 
     public Customer(String firstName, String lastName, String password, Contact contact, Address address) {
         super(firstName, lastName, contact, password, Role.Customer);
@@ -15,5 +15,10 @@ public class Customer extends User {
 
     public Address getAddress() {
         return address;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString()+address.toString();
     }
 }

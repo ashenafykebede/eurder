@@ -4,11 +4,11 @@ public class Item {
     private final int itemId;
     private final String itemName;
     private final String description;
-    private final float price;
+    private final double price;
     private final int amountInStock;
     private static int idGenerator = 0;
 
-    public Item(String itemName, String description, float price, int amountInStock) {
+    public Item(String itemName, String description, double price, int amountInStock) {
         this.itemId = ++idGenerator;
         this.itemName = validateName(itemName);
         this.description = description;
@@ -24,7 +24,7 @@ public class Item {
         return itemName;
     }
 
-    private float validatePrice(float price) {
+    private double validatePrice(double price) {
         if (price < 0) {
             throw new IllegalArgumentException("Incorrect input");
         }
@@ -50,7 +50,7 @@ public class Item {
         return description;
     }
 
-    public float getPrice() {
+    public double getPrice() {
         return price;
     }
 

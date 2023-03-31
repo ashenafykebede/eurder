@@ -58,4 +58,14 @@ public class Address {
     public String getCity() {
         return null;
     }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "streetName='" + streetName + '\'' +
+                ", streetNumber=" + streetNumber +
+                ", postalCode='" + postalCode + '\'' +
+                ", city='" + city + '\'' +
+                '}';
+    }
 }
