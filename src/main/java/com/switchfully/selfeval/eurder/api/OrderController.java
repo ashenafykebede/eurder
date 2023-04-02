@@ -3,18 +3,15 @@ package com.switchfully.selfeval.eurder.api;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.switchfully.selfeval.eurder.api.dto.CreateOrderDTO;
 import com.switchfully.selfeval.eurder.api.dto.ItemGroupDTO;
+import com.switchfully.selfeval.eurder.api.dto.OrderReportDTO;
 import com.switchfully.selfeval.eurder.domain.order.Order;
 import com.switchfully.selfeval.eurder.service.OrderService;
 import org.apache.tomcat.util.json.JSONParser;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @RequestMapping("orders")
@@ -26,12 +23,17 @@ public class OrderController {
 
     @PostMapping(consumes = "application/json", produces = "application/json")
     public Order createOrder(@RequestBody List<ItemGroupDTO> itemGroupDTOS) {
-        return orderService.createOrder(new CreateOrderDTO(itemGroupDTOS));
+        return orderService.createOrder(itemGroupDTOS);
+
+    }
+    @GetMapping(path="reorder/{orderId}", produces = "application/json")
+    public Order reOrder(@PathVariable String orderId) {
+        return orderService.reOrder(orderId);
 
     }
 
     @GetMapping
-    public List<Order> getAllMyOrders() {
+    public OrderReportDTO getAllMyOrders() {
         return orderService.getAllMyOrders();
     }
 }

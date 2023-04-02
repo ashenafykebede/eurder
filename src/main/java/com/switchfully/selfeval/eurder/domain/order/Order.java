@@ -5,19 +5,19 @@ import java.util.List;
 import java.util.UUID;
 
 public class Order {
-    private final UUID orderNumber;
+    private final String orderNumber;
     private final List<ItemGroup> itemGroups;
     private final double totalPricePerOrder;
     private final int userId;
 
     public Order(List<ItemGroup> itemGroups, double totalPricePerOrder, int userId) {
-        this.orderNumber = UUID.randomUUID();
+        this.orderNumber = UUID.randomUUID().toString();
         this.itemGroups = itemGroups;
         this.totalPricePerOrder = totalPricePerOrder;
         this.userId = userId;
     }
 
-    public UUID getOrderNumber() {
+    public String getOrderNumber() {
         return orderNumber;
     }
 

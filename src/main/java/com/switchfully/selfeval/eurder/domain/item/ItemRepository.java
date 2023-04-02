@@ -18,6 +18,10 @@ public class ItemRepository {
         itemsDatabase.put(item.getItemId(), item);
         return itemsDatabase.get(item.getItemId());
     }
+    public Item updateItem(int id,Item item) {
+        itemsDatabase.put(id,item);
+        return itemsDatabase.get(id);
+    }
 
     public Item findItemById(int id) {
         return itemsDatabase.get(id);
