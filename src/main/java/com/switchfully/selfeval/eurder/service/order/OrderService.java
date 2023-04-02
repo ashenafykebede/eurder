@@ -1,6 +1,7 @@
-package com.switchfully.selfeval.eurder.service;
+package com.switchfully.selfeval.eurder.service.order;
 
 import com.switchfully.selfeval.eurder.api.dto.ItemGroupDTO;
+import com.switchfully.selfeval.eurder.api.dto.OrderDTO;
 import com.switchfully.selfeval.eurder.api.dto.OrderReportDTO;
 import com.switchfully.selfeval.eurder.domain.item.Item;
 import com.switchfully.selfeval.eurder.domain.item.ItemAmountPair;
@@ -12,30 +13,42 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.UUID;
 
 @Service
 public class OrderService {
     private final OrderRepository orderRepository;
     private final ItemRepository itemRepository;
+    private final OrderMapper orderMapper;
 
-    public OrderService(OrderRepository orderRepository, ItemRepository itemRepository) {
+    public OrderService(OrderRepository orderRepository, ItemRepository itemRepository, OrderMapper orderMapper) {
         this.orderRepository = orderRepository;
         this.itemRepository = itemRepository;
+        this.orderMapper = orderMapper;
     }
-    public Order createOrder(List<ItemGroupDTO> itemGroupDTOs) {
+    public OrderDTO createOrder(List<ItemGroupDTO> itemGroupDTOs) {
 
         List<ItemAmountPair> itemAmountPairs = convertToItemAmountPairs(itemGroupDTOs);
 
+        updateAmountInStock(itemAmountPairs);
+
         List<ItemGroup> itemGroups = convertToItemGroups(itemAmountPairs);
+
         Order order = new Order(itemGroups, calculateTotalPricePerOrder(itemGroups), 1);
-        return orderRepository.createOrder(order);
+        return orderMapper.toDTO(orderRepository.createOrder(order));
     }
+
+    private void updateAmountInStock(List<ItemAmountPair> itemAmountPairs) {
+        itemAmountPairs.forEach(itemAmountPair -> {
+            itemAmountPair.getItem().setAmountInStock(itemAmountPair.getItem().getAmountInStock()-itemAmountPair.getAmountOrdered());
+            itemRepository.save(itemAmountPair.getItem());
+        });
+    }
+
     public Order getOrderById(String orderId) {
         return orderRepository.getOrderById(orderId);
     }
 
-    public Order reOrder(String orderId) {
+    public OrderDTO reOrder(String orderId) {
         Order reOreder = orderRepository.getOrderById(orderId);
         List<ItemGroupDTO> itemGroupDTOs = reOreder.getItemGroups()
                 .stream()
@@ -47,10 +60,10 @@ public class OrderService {
         return createOrder(itemGroupDTOs);
     }
 
-    public OrderReportDTO getAllMyOrders() {
-        List<Order> orders = orderRepository.getAllMyOrders();
+    public OrderReportDTO getAllMyOrders(int userId) {
+        List<Order> orders = orderRepository.getAllMyOrders(userId);
         double totalPrice = calculateTotalPriceForAllMyOrders(orders);
-        return new OrderReportDTO(orders, totalPrice);
+        return new OrderReportDTO(orderMapper.toDTO(orders), totalPrice);
     }
 
     private double calculateTotalPriceForAllMyOrders(List<Order> orders) {

@@ -20,8 +20,8 @@ public class OrderRepository {
         return orderDatabase.get(order.getOrderNumber());
     }
 
-    public List<Order> getAllMyOrders() {
-        return new ArrayList<>(orderDatabase.values());
+    public List<Order> getAllMyOrders(int userId) {
+        return new ArrayList<>(orderDatabase.values().stream().filter(order -> order.getUserId()==userId).toList());
     }
 
     public Order getOrderById(String orderId) {

@@ -1,4 +1,4 @@
-package com.switchfully.selfeval.eurder.service;
+package com.switchfully.selfeval.eurder.service.item;
 
 import com.switchfully.selfeval.eurder.domain.item.Item;
 import com.switchfully.selfeval.eurder.domain.item.ItemRepository;
@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ItemService {
-    private ItemRepository itemRepository;
+    private final ItemRepository itemRepository;
 
     @Autowired
     public ItemService(ItemRepository itemRepository) {

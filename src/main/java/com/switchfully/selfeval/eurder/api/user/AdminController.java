@@ -5,7 +5,7 @@ import com.switchfully.selfeval.eurder.domain.item.ItemRepository;
 import com.switchfully.selfeval.eurder.domain.order.OrderRepository;
 import com.switchfully.selfeval.eurder.domain.user.UserRepository;
 import com.switchfully.selfeval.eurder.domain.user.role.Customer;
-import com.switchfully.selfeval.eurder.service.ItemService;
+import com.switchfully.selfeval.eurder.service.item.ItemService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

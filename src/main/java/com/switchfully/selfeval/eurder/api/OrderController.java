@@ -1,16 +1,12 @@
 package com.switchfully.selfeval.eurder.api;
 
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.switchfully.selfeval.eurder.api.dto.ItemGroupDTO;
+import com.switchfully.selfeval.eurder.api.dto.OrderDTO;
 import com.switchfully.selfeval.eurder.api.dto.OrderReportDTO;
 import com.switchfully.selfeval.eurder.domain.order.Order;
-import com.switchfully.selfeval.eurder.service.OrderService;
-import org.apache.tomcat.util.json.JSONParser;
+import com.switchfully.selfeval.eurder.service.order.OrderService;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
 import java.util.*;
 
 @RestController
@@ -22,18 +18,19 @@ public class OrderController {
     }
 
     @PostMapping(consumes = "application/json", produces = "application/json")
-    public Order createOrder(@RequestBody List<ItemGroupDTO> itemGroupDTOS) {
+    public OrderDTO createOrder(@RequestBody List<ItemGroupDTO> itemGroupDTOS) {
         return orderService.createOrder(itemGroupDTOS);
 
     }
     @GetMapping(path="reorder/{orderId}", produces = "application/json")
-    public Order reOrder(@PathVariable String orderId) {
+    public OrderDTO reOrder(@PathVariable String orderId) {
         return orderService.reOrder(orderId);
 
     }
 
     @GetMapping
     public OrderReportDTO getAllMyOrders() {
-        return orderService.getAllMyOrders();
+        int userId = 1; //TODO : get id from user authentication
+        return orderService.getAllMyOrders(userId);
     }
 }

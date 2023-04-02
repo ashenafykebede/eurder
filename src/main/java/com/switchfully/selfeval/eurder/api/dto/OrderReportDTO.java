@@ -5,16 +5,16 @@ import com.switchfully.selfeval.eurder.domain.order.Order;
 import java.util.List;
 
 public class OrderReportDTO {
-    private final List<Order> orders;
+    private final List<OrderDTO> ordersDTOs;
     private final double TotalPrice;
 
-    public OrderReportDTO(List<Order> orders, double totalPrice) {
-        this.orders = orders;
+    public OrderReportDTO(List<OrderDTO> ordersDTOs, double totalPrice) {
+        this.ordersDTOs = ordersDTOs;
         TotalPrice = totalPrice;
     }
 
-    public List<Order> getOrders() {
-        return orders;
+    public List<OrderDTO> getOrdersDTOs() {
+        return ordersDTOs;
     }
 
     public double getTotalPrice() {
