@@ -22,7 +22,6 @@ public class Item {
         this.description = item.getDescription();
         this.price = item.getPrice();
         this.amountInStock = item.getAmountInStock();
-
     }
 
 

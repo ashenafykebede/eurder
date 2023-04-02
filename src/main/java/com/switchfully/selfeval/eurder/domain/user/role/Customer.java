@@ -16,9 +16,4 @@ public class Customer extends User {
     public Address getAddress() {
         return address;
     }
-
-    @Override
-    public String toString() {
-        return super.toString()+address.toString();
-    }
 }

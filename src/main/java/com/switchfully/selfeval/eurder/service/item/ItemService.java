@@ -2,9 +2,11 @@ package com.switchfully.selfeval.eurder.service.item;
 
 import com.switchfully.selfeval.eurder.api.dto.item.CreateItemDTO;
 import com.switchfully.selfeval.eurder.api.dto.item.ItemDetailsDTO;
+import com.switchfully.selfeval.eurder.api.dto.item.ItemsOverviewDTO;
 import com.switchfully.selfeval.eurder.api.dto.item.UpdateItemDTO;
 import com.switchfully.selfeval.eurder.domain.item.Item;
 import com.switchfully.selfeval.eurder.domain.item.ItemRepository;
+import com.switchfully.selfeval.eurder.domain.item.itemResupply.Indicator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,10 +37,32 @@ public class ItemService {
     }
 
     public List<ItemDetailsDTO> getAllItems() {
-       return itemMapper.toItemDetailsDTO(itemRepository.getAllItems());
+        return itemMapper.toItemDetailsDTO(itemRepository.getAllItems());
     }
 
     public ItemDetailsDTO getAnItem(int itemID) {
         return itemMapper.toItemDetailsDTO(itemRepository.findItemById(itemID));
     }
+
+    public List<ItemsOverviewDTO> getItemsOverview() {
+        List<ItemDetailsDTO> itemDetailsDTOS = getAllItems();
+        return itemDetailsDTOS.stream().map(itemDetailsDTO -> new ItemsOverviewDTO(
+                        itemDetailsDTO.itemId(),
+                        itemDetailsDTO.itemName(),
+                        calculateResuplyUrgency(itemDetailsDTO.amountInStock())
+                ))
+                .toList();
+    }
+
+    private Indicator calculateResuplyUrgency(int amountInStock) {
+        if (amountInStock < 5) {
+            return Indicator.STOCK_LOW;
+        }
+        if (amountInStock < 10) {
+            return Indicator.STOCK_MEDIUM;
+        }
+        return Indicator.STOCK_HIGH;
+    }
+
+
 }

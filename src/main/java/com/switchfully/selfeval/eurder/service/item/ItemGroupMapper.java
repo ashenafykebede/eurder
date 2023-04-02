@@ -1,7 +1,7 @@
 package com.switchfully.selfeval.eurder.service.item;
 
 import com.switchfully.selfeval.eurder.api.dto.itemGroup.ItemGroupDTO;
-import com.switchfully.selfeval.eurder.domain.item.ItemGroup;
+import com.switchfully.selfeval.eurder.domain.item.itemGroup.ItemGroup;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

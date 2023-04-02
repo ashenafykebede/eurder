@@ -1,4 +1,4 @@
-package com.switchfully.selfeval.eurder.domain.item;
+package com.switchfully.selfeval.eurder.domain.item.itemGroup;
 
 public class ItemGroupAddressPair {
     private final int userId;

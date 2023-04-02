@@ -1,4 +1,6 @@
-package com.switchfully.selfeval.eurder.domain.item;
+package com.switchfully.selfeval.eurder.domain.item.itemGroup;
+
+import com.switchfully.selfeval.eurder.domain.item.Item;
 
 import java.time.LocalDate;
 
