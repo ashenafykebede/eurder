@@ -5,7 +5,7 @@ import com.switchfully.selfeval.eurder.api.dto.order.OrderDTO;
 import com.switchfully.selfeval.eurder.api.dto.order.OrderReportDTO;
 import com.switchfully.selfeval.eurder.domain.item.Item;
 import com.switchfully.selfeval.eurder.domain.item.ItemAmountPair;
-import com.switchfully.selfeval.eurder.domain.item.ItemGroup;
+import com.switchfully.selfeval.eurder.domain.item.itemGroup.ItemGroup;
 import com.switchfully.selfeval.eurder.domain.item.ItemRepository;
 import com.switchfully.selfeval.eurder.domain.order.Order;
 import com.switchfully.selfeval.eurder.domain.order.OrderRepository;
@@ -39,7 +39,11 @@ public class OrderService {
 
     private void updateAmountInStock(List<ItemAmountPair> itemAmountPairs) {
         itemAmountPairs.forEach(itemAmountPair -> {
-            itemAmountPair.getItem().setAmountInStock(itemAmountPair.getItem().getAmountInStock()-itemAmountPair.getAmountOrdered());
+           if (itemAmountPair.getItem().getAmountInStock()<=itemAmountPair.getAmountOrdered()){
+               itemAmountPair.getItem().setAmountInStock(0);
+           }else {
+               itemAmountPair.getItem().setAmountInStock(itemAmountPair.getItem().getAmountInStock()-itemAmountPair.getAmountOrdered());
+           }
             itemRepository.save(itemAmountPair.getItem());
         });
     }

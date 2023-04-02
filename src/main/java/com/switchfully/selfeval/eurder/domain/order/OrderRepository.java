@@ -1,15 +1,10 @@
 package com.switchfully.selfeval.eurder.domain.order;
 
-import com.switchfully.selfeval.eurder.domain.item.ItemGroup;
-import com.switchfully.selfeval.eurder.domain.item.ItemGroupAddressPair;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.stream.Collectors;
 
 @Repository
 public class OrderRepository {

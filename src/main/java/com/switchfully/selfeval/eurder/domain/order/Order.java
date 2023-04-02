@@ -1,5 +1,5 @@
 package com.switchfully.selfeval.eurder.domain.order;
-import com.switchfully.selfeval.eurder.domain.item.ItemGroup;
+import com.switchfully.selfeval.eurder.domain.item.itemGroup.ItemGroup;
 
 import java.util.List;
 import java.util.UUID;
