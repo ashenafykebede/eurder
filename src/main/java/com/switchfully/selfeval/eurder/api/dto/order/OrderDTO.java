@@ -1,18 +1,18 @@
-package com.switchfully.selfeval.eurder.api.dto;
+package com.switchfully.selfeval.eurder.api.dto.order;
 
-import com.switchfully.selfeval.eurder.domain.item.ItemGroup;
+import com.switchfully.selfeval.eurder.api.dto.itemGroup.ItemGroupDTO;
 
 import java.util.List;
 
 public class OrderDTO {
 
     private final String orderNumber;
-    private final List<ItemGroup> itemGroups;
+    private final List<ItemGroupDTO> itemGroup;
     private final double totalPricePerOrder;
 
-    public OrderDTO(String orderNumber, List<ItemGroup> itemGroups, double totalPricePerOrder) {
+    public OrderDTO(String orderNumber, List<ItemGroupDTO> itemGroupDTOS, double totalPricePerOrder) {
         this.orderNumber = orderNumber;
-        this.itemGroups = itemGroups;
+        this.itemGroup = itemGroupDTOS;
         this.totalPricePerOrder = totalPricePerOrder;
     }
 
@@ -20,8 +20,8 @@ public class OrderDTO {
         return orderNumber;
     }
 
-    public List<ItemGroup> getItemGroups() {
-        return itemGroups;
+    public List<ItemGroupDTO> getItemGroup() {
+        return itemGroup;
     }
 
     public double getTotalPricePerOrder() {

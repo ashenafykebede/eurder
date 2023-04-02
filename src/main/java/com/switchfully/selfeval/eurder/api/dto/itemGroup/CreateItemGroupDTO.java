@@ -1,10 +1,10 @@
-package com.switchfully.selfeval.eurder.api.dto;
+package com.switchfully.selfeval.eurder.api.dto.itemGroup;
 
-public class ItemGroupDTO {
+public class CreateItemGroupDTO {
     private final int itemId;
     private final int amountOrdered;
 
-    public ItemGroupDTO(int itemId, int amountOrdered) {
+    public CreateItemGroupDTO(int itemId, int amountOrdered) {
         this.itemId = itemId;
         this.amountOrdered = amountOrdered;
     }

@@ -1,7 +1,8 @@
 package com.switchfully.selfeval.eurder.service.item;
 
-import com.switchfully.selfeval.eurder.api.dto.ItemDTO;
-import com.switchfully.selfeval.eurder.api.dto.UpdateItemDTO;
+import com.switchfully.selfeval.eurder.api.dto.item.CreateItemDTO;
+import com.switchfully.selfeval.eurder.api.dto.item.ItemDetailsDTO;
+import com.switchfully.selfeval.eurder.api.dto.item.UpdateItemDTO;
 import com.switchfully.selfeval.eurder.domain.item.Item;
 import com.switchfully.selfeval.eurder.domain.item.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,20 +21,24 @@ public class ItemService {
         this.itemMapper = itemMapper;
     }
 
-    public ItemDTO addItem(Item newItem) {
-        return itemMapper.toDTO(itemRepository.save(newItem));
+    public ItemDetailsDTO addItem(CreateItemDTO createItemDTO) {
+        return itemMapper.toItemDetailsDTO(itemRepository.save(itemMapper.toDomain(createItemDTO)));
     }
 
-    public ItemDTO updateItem(int id, UpdateItemDTO newItemData) {
+    public ItemDetailsDTO updateItem(int id, UpdateItemDTO newItemData) {
         Item updatedItem = itemRepository.findItemById(id);
         updatedItem.setItemName(newItemData.getItemName());
         updatedItem.setDescription(newItemData.getDescription());
         updatedItem.setPrice(newItemData.getPrice());
         updatedItem.setAmountInStock(newItemData.getAmountInStock());
-        return itemMapper.toDTO(itemRepository.save(updatedItem));
+        return itemMapper.toItemDetailsDTO(itemRepository.save(updatedItem));
     }
 
-    public List<ItemDTO> getAllItems() {
-       return itemMapper.toDTO(itemRepository.getAllItems());
+    public List<ItemDetailsDTO> getAllItems() {
+       return itemMapper.toItemDetailsDTO(itemRepository.getAllItems());
+    }
+
+    public ItemDetailsDTO getAnItem(int itemID) {
+        return itemMapper.toItemDetailsDTO(itemRepository.findItemById(itemID));
     }
 }

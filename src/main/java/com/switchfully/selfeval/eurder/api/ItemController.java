@@ -1,11 +1,9 @@
 package com.switchfully.selfeval.eurder.api;
-
-import com.switchfully.selfeval.eurder.api.dto.ItemDTO;
-import com.switchfully.selfeval.eurder.domain.item.Item;
-import com.switchfully.selfeval.eurder.domain.item.ItemRepository;
+import com.switchfully.selfeval.eurder.api.dto.item.ItemDetailsDTO;
 import com.switchfully.selfeval.eurder.service.item.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,7 +20,11 @@ public class ItemController {
     }
 
     @GetMapping
-    public List<ItemDTO> getAllItems() {
+    public List<ItemDetailsDTO> getAllItems() {
         return itemService.getAllItems();
+    }
+    @GetMapping("{itemID}")
+    public ItemDetailsDTO getAnItem(@PathVariable int itemID) {
+        return itemService.getAnItem(itemID);
     }
 }

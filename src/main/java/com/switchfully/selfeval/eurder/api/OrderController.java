@@ -1,9 +1,8 @@
 package com.switchfully.selfeval.eurder.api;
 
-import com.switchfully.selfeval.eurder.api.dto.ItemGroupDTO;
-import com.switchfully.selfeval.eurder.api.dto.OrderDTO;
-import com.switchfully.selfeval.eurder.api.dto.OrderReportDTO;
-import com.switchfully.selfeval.eurder.domain.order.Order;
+import com.switchfully.selfeval.eurder.api.dto.itemGroup.CreateItemGroupDTO;
+import com.switchfully.selfeval.eurder.api.dto.order.OrderDTO;
+import com.switchfully.selfeval.eurder.api.dto.order.OrderReportDTO;
 import com.switchfully.selfeval.eurder.service.order.OrderService;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +17,7 @@ public class OrderController {
     }
 
     @PostMapping(consumes = "application/json", produces = "application/json")
-    public OrderDTO createOrder(@RequestBody List<ItemGroupDTO> itemGroupDTOS) {
+    public OrderDTO createOrder(@RequestBody List<CreateItemGroupDTO> itemGroupDTOS) {
         return orderService.createOrder(itemGroupDTOS);
 
     }

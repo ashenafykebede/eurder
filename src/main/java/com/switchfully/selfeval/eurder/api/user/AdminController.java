@@ -1,8 +1,8 @@
 package com.switchfully.selfeval.eurder.api.user;
 
-import com.switchfully.selfeval.eurder.api.dto.ItemDTO;
-import com.switchfully.selfeval.eurder.api.dto.UpdateItemDTO;
-import com.switchfully.selfeval.eurder.domain.item.Item;
+import com.switchfully.selfeval.eurder.api.dto.item.CreateItemDTO;
+import com.switchfully.selfeval.eurder.api.dto.item.ItemDetailsDTO;
+import com.switchfully.selfeval.eurder.api.dto.item.UpdateItemDTO;
 import com.switchfully.selfeval.eurder.domain.item.ItemRepository;
 import com.switchfully.selfeval.eurder.domain.order.OrderRepository;
 import com.switchfully.selfeval.eurder.domain.user.UserRepository;
@@ -38,11 +38,11 @@ public class AdminController {
 
     //   Items
     @PostMapping(path = "items",consumes = "application/json",produces = "application/json")
-    public ItemDTO addItem(@RequestBody Item newItem){
-        return itemService.addItem(newItem);
+    public ItemDetailsDTO addItem(@RequestBody CreateItemDTO createItemDTO){
+        return itemService.addItem(createItemDTO);
     }
     @PutMapping(path = "items/{id}",consumes = "application/json",produces = "application/json")
-    public ItemDTO updateItem(@PathVariable int id,@RequestBody UpdateItemDTO updateItemDTO){
+    public ItemDetailsDTO updateItem(@PathVariable int id,@RequestBody UpdateItemDTO updateItemDTO){
         return itemService.updateItem(id,updateItemDTO);
     }
 }
