@@ -3,11 +3,10 @@ package com.switchfully.selfeval.eurder.api.dto;
 import com.switchfully.selfeval.eurder.domain.item.Item;
 
 public class UpdateItemDTO {
-    private String itemName;
-    private String description;
-    private double price;
-    private int amountInStock;
-    private static int idGenerator = 0;
+    private final String itemName;
+    private final String description;
+    private final double price;
+    private final int amountInStock;
 
     public UpdateItemDTO(String itemName, String description, double price, int amountInStock) {
         this.itemName = itemName;
