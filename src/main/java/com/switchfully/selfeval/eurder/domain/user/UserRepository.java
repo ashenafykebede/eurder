@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.stream.Collectors;
 
 @Repository
 public class UserRepository {
@@ -23,12 +22,19 @@ public class UserRepository {
         return customersDatabase.get(newCustomer.getUserID());
     }
 
-    public Customer getACustomer(int id) {
+    public Customer getCustomerById(int id) {
         return customersDatabase.get(id);
     }
 
     private void addDefaultAdmin() {
         Admin admin = new Admin("John", "Doe", new Contact("john@gmail.com", "+3212345678"), "123");
         adminsDatabase.put(admin.getUserID(), admin);
+    }
+
+    public User getUserByEmail(String email) {
+        return customersDatabase.values().stream()
+                .filter(customer -> customer.getContact().getEmail().equals(email))
+                .findFirst()
+                .orElseThrow();
     }
 }
