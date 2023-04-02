@@ -1,7 +1,7 @@
 package com.switchfully.selfeval.eurder.domain.item;
 
 public class Item {
-    private int itemId;
+    private final int itemId;
     private String itemName;
     private String description;
     private double price;
@@ -81,16 +81,5 @@ public class Item {
 
     public void setAmountInStock(int amountInStock) {
         this.amountInStock = amountInStock;
-    }
-
-    @Override
-    public String toString() {
-        return "Item{" +
-                "itemId=" + itemId +
-                ", itemName='" + itemName + '\'' +
-                ", description='" + description + '\'' +
-                ", price=" + price +
-                ", amountInStock=" + amountInStock +
-                '}';
     }
 }

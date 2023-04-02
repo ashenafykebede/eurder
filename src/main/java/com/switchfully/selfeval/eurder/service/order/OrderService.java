@@ -1,8 +1,8 @@
 package com.switchfully.selfeval.eurder.service.order;
 
-import com.switchfully.selfeval.eurder.api.dto.ItemGroupDTO;
-import com.switchfully.selfeval.eurder.api.dto.OrderDTO;
-import com.switchfully.selfeval.eurder.api.dto.OrderReportDTO;
+import com.switchfully.selfeval.eurder.api.dto.itemGroup.CreateItemGroupDTO;
+import com.switchfully.selfeval.eurder.api.dto.order.OrderDTO;
+import com.switchfully.selfeval.eurder.api.dto.order.OrderReportDTO;
 import com.switchfully.selfeval.eurder.domain.item.Item;
 import com.switchfully.selfeval.eurder.domain.item.ItemAmountPair;
 import com.switchfully.selfeval.eurder.domain.item.ItemGroup;
@@ -25,7 +25,7 @@ public class OrderService {
         this.itemRepository = itemRepository;
         this.orderMapper = orderMapper;
     }
-    public OrderDTO createOrder(List<ItemGroupDTO> itemGroupDTOs) {
+    public OrderDTO createOrder(List<CreateItemGroupDTO> itemGroupDTOs) {
 
         List<ItemAmountPair> itemAmountPairs = convertToItemAmountPairs(itemGroupDTOs);
 
@@ -50,9 +50,9 @@ public class OrderService {
 
     public OrderDTO reOrder(String orderId) {
         Order reOreder = orderRepository.getOrderById(orderId);
-        List<ItemGroupDTO> itemGroupDTOs = reOreder.getItemGroups()
+        List<CreateItemGroupDTO> itemGroupDTOs = reOreder.getItemGroups()
                 .stream()
-                .map(itemGroup -> new ItemGroupDTO(
+                .map(itemGroup -> new CreateItemGroupDTO(
                         itemGroup.getItem().getItemId(),
                         itemGroup.getAmountOrdered()))
                 .toList();
@@ -83,7 +83,7 @@ public class OrderService {
                 .toList();
     }
 
-    private List<ItemAmountPair> convertToItemAmountPairs(List<ItemGroupDTO> itemGroupDTOs) {
+    private List<ItemAmountPair> convertToItemAmountPairs(List<CreateItemGroupDTO> itemGroupDTOs) {
         return itemGroupDTOs.stream()
                 .map(itemGroupDTO -> new ItemAmountPair(
                         new Item(itemRepository.findItemById(itemGroupDTO.getItemId())),
