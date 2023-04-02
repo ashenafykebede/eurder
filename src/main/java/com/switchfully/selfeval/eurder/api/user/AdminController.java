@@ -5,7 +5,6 @@ import com.switchfully.selfeval.eurder.api.dto.item.ItemDetailsDTO;
 import com.switchfully.selfeval.eurder.api.dto.item.ItemsOverviewDTO;
 import com.switchfully.selfeval.eurder.api.dto.item.UpdateItemDTO;
 import com.switchfully.selfeval.eurder.domain.item.ItemRepository;
-import com.switchfully.selfeval.eurder.domain.item.itemResupply.UrgencyComparator;
 import com.switchfully.selfeval.eurder.domain.order.OrderRepository;
 import com.switchfully.selfeval.eurder.domain.user.UserRepository;
 import com.switchfully.selfeval.eurder.domain.user.role.Customer;
@@ -13,7 +12,6 @@ import com.switchfully.selfeval.eurder.service.item.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -40,7 +38,7 @@ public class AdminController {
 
     @GetMapping("customers/{id}")
     public Customer getACustomer(@PathVariable int id) {
-        return userRepository.getACustomer(id);
+        return userRepository.getCustomerById(id);
     }
 
     //   Items

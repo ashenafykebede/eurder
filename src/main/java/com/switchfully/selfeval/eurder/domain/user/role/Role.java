@@ -1,5 +1,7 @@
 package com.switchfully.selfeval.eurder.domain.user.role;
 
+import com.switchfully.selfeval.eurder.service.security.Feature;
+
 import java.util.List;
 
 import static com.google.common.collect.Lists.newArrayList;
