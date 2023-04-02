@@ -4,17 +4,17 @@ import com.switchfully.selfeval.eurder.domain.user.role.Feature;
 import com.switchfully.selfeval.eurder.domain.user.role.Role;
 
 public abstract class User {
-    private final int usedID;
+    private final int userID;
     private final String  firstName;
     private final String lastName;
-    private final Contact contact;
     private final String password;
     private final Role role;
+    private final Contact contact;
     private static int idGenerator=0;
 
 
     public User(String firstName, String lastName, Contact contact, String password, Role role) {
-        this.usedID = ++idGenerator;
+        this.userID = ++idGenerator;
         this.firstName = firstName;
         this.lastName = lastName;
         this.contact = contact;
@@ -22,8 +22,8 @@ public abstract class User {
         this.role = role;
     }
 
-    public int getUsedID() {
-        return usedID;
+    public int getUserID() {
+        return userID;
     }
 
     public String getFirstName() {

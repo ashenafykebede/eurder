@@ -1,19 +1,28 @@
 package com.switchfully.selfeval.eurder.domain.item;
 
 public class Item {
-    private final int itemId;
-    private final String itemName;
-    private final String description;
-    private final float price;
-    private final int amountInStock;
+    private int itemId;
+    private String itemName;
+    private String description;
+    private double price;
+    private int amountInStock;
     private static int idGenerator = 0;
 
-    public Item(String itemName, String description, float price, int amountInStock) {
+    public Item(String itemName, String description, double price, int amountInStock) {
         this.itemId = ++idGenerator;
         this.itemName = validateName(itemName);
         this.description = description;
         this.price = validatePrice(price);
         this.amountInStock = validateAmount(amountInStock);
+    }
+
+    public Item(Item item) {
+        this.itemId = item.getItemId();
+        this.itemName = item.getItemName();
+        this.description = item.getDescription();
+        this.price = item.getPrice();
+        this.amountInStock = item.getAmountInStock();
+
     }
 
 
@@ -24,7 +33,7 @@ public class Item {
         return itemName;
     }
 
-    private float validatePrice(float price) {
+    private double validatePrice(double price) {
         if (price < 0) {
             throw new IllegalArgumentException("Incorrect input");
         }
@@ -50,11 +59,38 @@ public class Item {
         return description;
     }
 
-    public float getPrice() {
+    public double getPrice() {
         return price;
     }
 
     public int getAmountInStock() {
         return amountInStock;
+    }
+
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public void setAmountInStock(int amountInStock) {
+        this.amountInStock = amountInStock;
+    }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "itemId=" + itemId +
+                ", itemName='" + itemName + '\'' +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                ", amountInStock=" + amountInStock +
+                '}';
     }
 }
