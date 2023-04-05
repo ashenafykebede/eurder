@@ -46,15 +46,15 @@ public class Address {
     }
 
     public int getStreetNumber() {
-        return 0;
+        return streetNumber;
     }
 
     public String getPostalCode() {
-        return null;
+        return postalCode;
     }
 
     public String getCity() {
-        return null;
+        return city;
     }
 
     @Override
