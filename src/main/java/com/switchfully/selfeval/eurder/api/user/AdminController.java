@@ -10,6 +10,7 @@ import com.switchfully.selfeval.eurder.domain.user.UserRepository;
 import com.switchfully.selfeval.eurder.domain.user.role.Customer;
 import com.switchfully.selfeval.eurder.service.item.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -43,6 +44,7 @@ public class AdminController {
 
     //   Items
     @PostMapping(path = "items", consumes = "application/json", produces = "application/json")
+    @ResponseStatus(HttpStatus.CREATED)
     public ItemDetailsDTO addItem(@RequestBody CreateItemDTO createItemDTO) {
         return itemService.addItem(createItemDTO);
     }

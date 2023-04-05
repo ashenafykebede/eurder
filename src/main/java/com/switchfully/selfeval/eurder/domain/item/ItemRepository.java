@@ -4,6 +4,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Repository
@@ -19,8 +20,8 @@ public class ItemRepository {
         return itemsDatabase.get(item.getItemId());
     }
 
-    public Item findItemById(int id) {
-        return itemsDatabase.get(id);
+    public Optional<Item> getItemById(int id) {
+        return Optional.ofNullable(itemsDatabase.get(id));
     }
 
 

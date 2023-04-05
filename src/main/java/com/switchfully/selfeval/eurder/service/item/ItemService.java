@@ -28,11 +28,13 @@ public class ItemService {
     }
 
     public ItemDetailsDTO updateItem(int id, UpdateItemDTO newItemData) {
-        Item updatedItem = itemRepository.findItemById(id);
+        Item updatedItem = itemRepository.getItemById(id).orElseThrow(ItemNotFoundException::new);
+
         updatedItem.setItemName(newItemData.getItemName());
         updatedItem.setDescription(newItemData.getDescription());
         updatedItem.setPrice(newItemData.getPrice());
         updatedItem.setAmountInStock(newItemData.getAmountInStock());
+
         return itemMapper.toItemDetailsDTO(itemRepository.save(updatedItem));
     }
 
@@ -40,8 +42,8 @@ public class ItemService {
         return itemMapper.toItemDetailsDTO(itemRepository.getAllItems());
     }
 
-    public ItemDetailsDTO getAnItem(int itemID) {
-        return itemMapper.toItemDetailsDTO(itemRepository.findItemById(itemID));
+    public ItemDetailsDTO getItemById(int itemID) {
+        return itemMapper.toItemDetailsDTO(itemRepository.getItemById(itemID).orElseThrow(ItemNotFoundException::new));
     }
 
     public List<ItemsOverviewDTO> getItemsOverview() {

@@ -19,35 +19,35 @@ class CustomerTest {
         String expected = "Ashenafi";
     }
 
-//    @Test
-//    void creatingACustomerWithIncorrectFirstName_shouldThrowAnException() {
-//        IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-//            Customer customer = new Customer("", "Weldie", "123",
-//                    new Contact("myemail@gmail.com", "0489562314"),
-//                    new Address("StationStraat", 65, "3000", "Leuven"));
-//        });
-//        Assertions.assertEquals("Incorrect input", exception.getMessage());
-//    }
+    @Test
+    void creatingACustomerWithIncorrectFirstName_shouldThrowAnException() {
+        IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            Customer customer = new Customer("", "Weldie", "123",
+                    new Contact("myemail@gmail.com", "0489562314"),
+                    new Address("StationStraat", 65, "3000", "Leuven"));
+        });
+        Assertions.assertEquals("Incorrect input", exception.getMessage());
+    }
 
-//    @Test
-//    void creatingACustomerWithIncorrectLastName_shouldThrowAnException() {
-//        IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-//            Customer customer = new Customer("", null, "123",
-//                    new Contact("myemail@gmail.com", "0489562314"),
-//                    new Address("StationStraat", 65, "3000", "Leuven"));
-//        });
-//        Assertions.assertEquals("Incorrect input", exception.getMessage());
-//    }
-//
-//    @Test
-//    void creatingACustomerWithIncorrectPassword_shouldThrowAnException() {
-//        IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-//            Customer customer = new Customer("", "Weldie", null,
-//                    new Contact("myemail@gmail.com", "0489562314"),
-//                    new Address("StationStraat", 65, "3000", "Leuven"));
-//        });
-//        Assertions.assertEquals("Incorrect input", exception.getMessage());
-//    }
+    @Test
+    void creatingACustomerWithIncorrectLastName_shouldThrowAnException() {
+        IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            Customer customer = new Customer("", null, "123",
+                    new Contact("myemail@gmail.com", "0489562314"),
+                    new Address("StationStraat", 65, "3000", "Leuven"));
+        });
+        Assertions.assertEquals("Incorrect input", exception.getMessage());
+    }
+
+    @Test
+    void creatingACustomerWithIncorrectPassword_shouldThrowAnException() {
+        IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            Customer customer = new Customer("", "Weldie", null,
+                    new Contact("myemail@gmail.com", "0489562314"),
+                    new Address("StationStraat", 65, "3000", "Leuven"));
+        });
+        Assertions.assertEquals("Incorrect input", exception.getMessage());
+    }
 
     @Test
     void givenACustomerWithWrongPassword_doesPasswordMatchShouldReturnFalse() {
