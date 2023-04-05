@@ -17,6 +17,16 @@ class AddressTest {
     }
 
     @Test
+    void givenAnAddress_getCityReturnsTheCity() {
+        Address address = new Address("newStraat",36,"3000","Leuven");
+
+        String actual = address.getCity();
+        String expected = "Leuven";
+
+        Assertions.assertEquals(expected,actual);
+    }
+
+    @Test
     void creatingAnAddressObjectUsingNullOrEmptyValues_shouldThrowAnException() {
 
         IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class,()->{
