@@ -1,5 +1,7 @@
 package com.switchfully.selfeval.eurder.domain.item;
 
+import java.util.Objects;
+
 public class Item {
     private final int itemId;
     private String itemName;
@@ -80,5 +82,18 @@ public class Item {
 
     public void setAmountInStock(int amountInStock) {
         this.amountInStock = amountInStock;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Item item = (Item) o;
+        return itemId == item.itemId;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(itemId);
     }
 }

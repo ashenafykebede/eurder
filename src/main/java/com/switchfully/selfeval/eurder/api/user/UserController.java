@@ -1,23 +1,21 @@
 package com.switchfully.selfeval.eurder.api.user;
 
-import com.switchfully.selfeval.eurder.domain.user.User;
-import com.switchfully.selfeval.eurder.domain.user.UserRepository;
 import com.switchfully.selfeval.eurder.domain.user.role.Customer;
+import com.switchfully.selfeval.eurder.service.user.UserService;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("users")
 public class UserController {
-    private final UserRepository userRepository;
+    private final UserService userService;
 
-    public UserController(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
+
 
     @PostMapping(consumes ="application/json" ,produces = "application/json")
     public Customer register(@RequestBody Customer newCustomer) {
-        return userRepository.register(newCustomer);
+        return userService.register(newCustomer);
     }
 }

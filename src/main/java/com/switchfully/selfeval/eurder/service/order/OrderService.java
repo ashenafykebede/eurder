@@ -9,6 +9,7 @@ import com.switchfully.selfeval.eurder.domain.item.itemGroup.ItemGroup;
 import com.switchfully.selfeval.eurder.domain.item.ItemRepository;
 import com.switchfully.selfeval.eurder.domain.order.Order;
 import com.switchfully.selfeval.eurder.domain.order.OrderRepository;
+import com.switchfully.selfeval.eurder.service.item.ItemNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -90,7 +91,7 @@ public class OrderService {
     private List<ItemAmountPair> convertToItemAmountPairs(List<CreateItemGroupDTO> itemGroupDTOs) {
         return itemGroupDTOs.stream()
                 .map(itemGroupDTO -> new ItemAmountPair(
-                        new Item(itemRepository.findItemById(itemGroupDTO.getItemId())),
+                        new Item(itemRepository.getItemById(itemGroupDTO.getItemId()).orElseThrow(ItemNotFoundException::new)),
                         itemGroupDTO.getAmountOrdered()))
                 .toList();
     }

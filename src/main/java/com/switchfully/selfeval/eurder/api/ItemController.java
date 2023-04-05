@@ -25,6 +25,6 @@ public class ItemController {
     }
     @GetMapping("{itemID}")
     public ItemDetailsDTO getAnItem(@PathVariable int itemID) {
-        return itemService.getAnItem(itemID);
+        return itemService.getItemById(itemID);
     }
 }
